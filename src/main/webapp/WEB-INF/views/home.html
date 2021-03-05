@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+        <table class="table table-striped custab">
+            <thead>
+            <a href="/customers/create" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+            <tr>
+                <th>Name</th>
+                <th>Adress</th>
+                <th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <th:block th:each="cus: ${list}">
+            <tr>
+                <td th:text="${cus.name}"></td>
+                <td th:text="${cus.address}"></td>
+                <td class="text-center"><a class='btn btn-info btn-xs' th:href="@{/customers/edit(id=${cus.getId()})}" ><span class="glyphicon glyphicon-edit"></span> Edit</a> <a onclick="return confirm('are you sure?')" th:href="@{/customers/delete(id=${cus.getId()})}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            </tr>
+            </th:block>
+        </table>
+    </div>
+</div>
+</body>
+</html>
